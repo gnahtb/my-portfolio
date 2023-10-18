@@ -27,10 +27,7 @@ function App() {
   useEffect(() => {
     fetch("/assets/info.json")
       .then((res) => res.json())
-      .then((json) => {
-        console.log(json);
-        setInfo(json);
-      });
+      .then((json) => setInfo(json));
   }, []);
   return (
     <div className="App container my-4">
@@ -79,7 +76,13 @@ function App() {
             {info.experiences?.map(function (experience) {
               return (
                 <div className="card mb-2">
-                  <div className="card-body">{experience.title}</div>
+                  <div className="card-body">
+                    <p className="h6">{experience.org}</p>
+                    <p className="small text-body-secondary">
+                      {experience.title}
+                    </p>
+                    <span>{experience.description}</span>
+                  </div>
                 </div>
               );
             })}
@@ -89,7 +92,13 @@ function App() {
             {info.publications?.map(function (publication) {
               return (
                 <div className="card mb-2">
-                  <div className="card-body">{publication.title}</div>
+                  <div className="card-body">
+                    <p className="h6">{publication.title}</p>
+                    <p className="small text-body-secondary">
+                      {publication.author}
+                    </p>
+                    <span>{publication.description}</span>
+                  </div>
                 </div>
               );
             })}
@@ -99,7 +108,13 @@ function App() {
             {info.educations?.map(function (education) {
               return (
                 <div className="card mb-2">
-                  <div className="card-body">{education.title}</div>
+                  <div className="card-body">
+                    <p className="h6">{education.org}</p>
+                    <p className="small text-body-secondary">
+                      {education.from} to {education.to}
+                    </p>
+                    <span>{education.description}</span>
+                  </div>
                 </div>
               );
             })}
