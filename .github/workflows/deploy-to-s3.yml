@@ -1,0 +1,38 @@
+name: deploy to s3
+
+on:
+  push:
+    branches: [ "master" ]
+    paths:
+      - public/**
+      - src/**
+      - .github/workflows/deploy-to-s3.yml
+
+jobs:
+  deploy-to-s3:
+
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [18.x]
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v3
+      with:
+        node-version: ${{ matrix.node-version }}
+        cache: 'npm'
+    - name: build static
+      run: |
+        npm install
+        npm run build
+    - name: copy to s3
+      uses: shallwefootball/s3-upload-action@master
+      with:
+        aws_key_id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws_secret_access_key: ${{ secrets.AWS_SECRET_ACCESS_KEY}}
+        aws_bucket: ${{ secrets.AWS_BUCKET }}
+        source_dir: 'build'
+        destination_dir: ''
