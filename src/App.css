@@ -1,13 +1,7 @@
-nav[data-toggle=toc] .nav>li>a {
-  color: var(--bs-secondary-color);
+.active-scroll-spy {
+  color: var(--bs-emphasis-color) !important;
 }
 
-nav[data-toggle=toc] .nav>li>a:focus,nav[data-toggle=toc] .nav>li>a:hover {
-  color: var(--bs-body-color);
-  border-left: 1px solid var(--bs-body-color);
-}
-
-nav[data-toggle=toc] .nav-link.active,nav[data-toggle=toc] .nav-link.active:focus,nav[data-toggle=toc] .nav-link.active:hover {
-  color: var(--bs-body-color);
-  border-left: 2px solid var(--bs-body-color);
+#toc>a:hover {
+  text-decoration: underline;
 }
