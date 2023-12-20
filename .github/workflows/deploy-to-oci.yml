@@ -1,0 +1,40 @@
+name: deploy to oci
+
+on:
+  push:
+    branches: ["master"]
+    paths:
+      - public/**
+      - src/**
+      - .github/workflows/deploy-to-oci.yml
+
+jobs:
+  deploy-to-oci:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [18.x]
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: "npm"
+      - name: build static
+        run: |
+          npm install
+          npm run build
+      - name: copy file via ssh key to oci
+        uses: appleboy/scp-action@v0.1.4
+        with:
+          host: ${{ secrets.OCI_PUBLIC_IP }}
+          username: ${{ secrets.OCI_USER }}
+          key: ${{ secrets.OCI_PRIVATE_KEY }}
+          source: "build/**"
+          target: "/var/www/html"
+          overwrite: true
+          debug: true
+          strip_components: 1
