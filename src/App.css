@@ -4,4 +4,5 @@
 
 #toc>a:hover {
   text-decoration: underline;
+  background-color: var(--bs-btn-active-bg) !important;
 }

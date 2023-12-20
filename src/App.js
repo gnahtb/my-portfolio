@@ -47,7 +47,9 @@ function App() {
         <div className="col-md-2 mb-4">
           <div className="sticky-md-top">
             <div>
-              <Image src="assets/me.png" thumbnail alt="me"></Image>
+              <p className="col-md-8 col-6">
+              <Image src={info.pfp} thumbnail alt="me"></Image>
+              </p>
               <h1>{info.name}</h1>
               <p>{info.about}</p>
             </div>
