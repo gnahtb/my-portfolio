@@ -30,4 +30,12 @@ Run `npm run build`. This builds the app for production to the `build` folder. I
 
 ## Deployment
 
-I configured a GitHub workflow to autonomously deploy any new commit to a personal AWS S3 bucket. It turned out that you can host a static website with S3.
+~~I configured a GitHub workflow to autonomously deploy any new commit to a personal AWS S3 bucket. It turned out that you can host a static website with S3.~~
+
+I now host this page on an Oracle Cloud (Always Free) instance running Nginx. Kudos to Oracle Cloud for maintaining an Always Free tier that doesn't any penny. Check out what Oracle Cloud free tier has at https://www.oracle.com/cloud/free/.
+
+Here are some resources if anyone also wants to host websites using Nginx on Oracle Cloud:
+
+- https://www.digitalocean.com/community/tutorials/how-to-install-nginx-on-ubuntu-22-04
+- (Free) SSL setup: https://letsencrypt.org/getting-started/
+- https://stackoverflow.com/questions/71127772/how-do-i-enable-https-on-my-nginx-server-on-oracle-cloud
