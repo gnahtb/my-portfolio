@@ -42,63 +42,44 @@ function App() {
       .then((json) => setInfo(json));
   }, []);
   return (
-    <Container className="App my-4">
+    <Container fluid="xxl" className="App my-4">
       <div className="row flex-column flex-md-row justify-content-center">
         <div className="col-md-2 mb-4">
           <div className="sticky-md-top">
             <div>
               <p className="col-md-8 col-6">
-              <Image src={info.pfp} thumbnail alt="me"></Image>
+                <Image src={info.pfp} thumbnail alt="me"></Image>
               </p>
               <h1>{info.name}</h1>
               <p>{info.about}</p>
             </div>
-            <div
-              id="toc"
-              className="flex-column text-secondary d-none d-md-block"
-            >
-              <NavLink data-to-scrollspy-id="posts" href="#posts">
-                Posts
-              </NavLink>
-              <NavLink data-to-scrollspy-id="cont" href="#cont">
-                Contacts
-              </NavLink>
-              <NavLink data-to-scrollspy-id="exp" href="#exp">
-                Experiences
-              </NavLink>
-              <NavLink data-to-scrollspy-id="pub" href="#pub">
-                Publications
-              </NavLink>
-              <NavLink data-to-scrollspy-id="edu" href="#edu">
-                Education
-              </NavLink>
-              <NavLink data-to-scrollspy-id="dnld" href="#dnld">
-                Downloadables
-              </NavLink>
+            <div className="mb-4">
+              <h4>Contacts</h4>
+              <div className="dropdown-divider"></div>
+              <div className="d-flex flex-wrap">
+                {info.contacts?.map(function (contact, index) {
+                  return (
+                    <Button
+                      href={contact.url}
+                      size="sm"
+                      key={index}
+                      className="me-1 mb-1"
+                    >
+                      <FontAwesomeIcon className="me-1" icon={contact.icon} />
+                      <span>{contact.title}</span>
+                    </Button>
+                  );
+                })}
+              </div>
             </div>
           </div>
         </div>
-        <div className="col-md-6">
+        <div className="col-md-5">
           <ScrollSpy scrollThrottle={10}>
             <div id="posts" className="mb-4">
               <h2>Posts</h2>
               <Card>
                 <Card.Body>Stay tuned!</Card.Body>
-              </Card>
-            </div>
-            <div id="cont" className="mb-4">
-              <h2>Contacts</h2>
-              <Card>
-                <Card.Body className="d-flex gap-1">
-                  {info.contacts?.map(function (contact, index) {
-                    return (
-                      <Button href={contact.url} size="sm" key={index}>
-                        <FontAwesomeIcon className="me-1" icon={contact.icon} />
-                        <span>{contact.title}</span>
-                      </Button>
-                    );
-                  })}
-                </Card.Body>
               </Card>
             </div>
             <div id="exp" className="mb-4">
@@ -178,6 +159,30 @@ function App() {
               </Card>
             </div>
           </ScrollSpy>
+        </div>
+        <div className="col-md-2 d-md-block d-none">
+          <div className="sticky-md-top">
+            <div
+              id="toc"
+              className="flex-column text-secondary d-none d-md-block"
+            >
+              <NavLink data-to-scrollspy-id="posts" href="#posts">
+                Posts
+              </NavLink>
+              <NavLink data-to-scrollspy-id="exp" href="#exp">
+                Experiences
+              </NavLink>
+              <NavLink data-to-scrollspy-id="pub" href="#pub">
+                Publications
+              </NavLink>
+              <NavLink data-to-scrollspy-id="edu" href="#edu">
+                Education
+              </NavLink>
+              <NavLink data-to-scrollspy-id="dnld" href="#dnld">
+                Downloadables
+              </NavLink>
+            </div>
+          </div>
         </div>
       </div>
     </Container>
