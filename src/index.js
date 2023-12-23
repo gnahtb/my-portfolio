@@ -4,6 +4,27 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+function detectColorMode() {
+  const htmlElement = document.querySelector("html");
+  if (htmlElement.getAttribute("data-bs-theme") === "auto") {
+    function updateTheme() {
+      document
+        .querySelector("html")
+        .setAttribute(
+          "data-bs-theme",
+          window.matchMedia("(prefers-color-scheme: dark)").matches
+            ? "dark"
+            : "light"
+        );
+    }
+    window
+      .matchMedia("(prefers-color-scheme: dark)")
+      .addEventListener("change", updateTheme);
+    updateTheme();
+  }
+}
+
+detectColorMode();
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>

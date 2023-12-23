@@ -1,7 +1,7 @@
 import "./App.css";
 import React, { useEffect, useState } from "react";
 
-import { Button, Card, Container, NavLink, Image } from "react-bootstrap";
+import { Button, Card, Container, Nav, NavLink, Image } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 import { library } from "@fortawesome/fontawesome-svg-core";
@@ -13,28 +13,7 @@ import ScrollSpy from "react-ui-scrollspy";
 
 library.add(fas, fab);
 
-function detectColorMode() {
-  const htmlElement = document.querySelector("html");
-  if (htmlElement.getAttribute("data-bs-theme") === "auto") {
-    function updateTheme() {
-      document
-        .querySelector("html")
-        .setAttribute(
-          "data-bs-theme",
-          window.matchMedia("(prefers-color-scheme: dark)").matches
-            ? "dark"
-            : "light"
-        );
-    }
-    window
-      .matchMedia("(prefers-color-scheme: dark)")
-      .addEventListener("change", updateTheme);
-    updateTheme();
-  }
-}
-
 function App() {
-  detectColorMode();
   const [info, setInfo] = useState({});
   useEffect(() => {
     fetch("/assets/info.json")
@@ -162,7 +141,7 @@ function App() {
         </div>
         <div className="col-md-2 d-md-block d-none">
           <div className="sticky-md-top">
-            <div
+            <Nav
               id="toc"
               className="flex-column text-secondary d-none d-md-block"
             >
@@ -181,7 +160,7 @@ function App() {
               <NavLink data-to-scrollspy-id="dnld" href="#dnld">
                 Downloadables
               </NavLink>
-            </div>
+            </Nav>
           </div>
         </div>
       </div>

@@ -1,8 +1,18 @@
 .active-scroll-spy {
   color: var(--bs-emphasis-color) !important;
+  border-left-color: var(--bs-emphasis-color) !important;
+  font-weight: bold !important;
+}
+
+#toc>a {
+  --bs-nav-link-padding-y: 0 !important;
+  --bs-nav-link-color: var(--bs-secondary-color) !important;
+  --bs-nav-link-hover-color: var(--bs-emphasis-color) !important;
+  border-left-style: solid;
+  border-left-width: 2px;
+  border-left-color: transparent;
 }
 
 #toc>a:hover {
-  text-decoration: underline;
-  background-color: var(--bs-btn-active-bg) !important;
+  border-left-color: var(--bs-emphasis-color) !important;
 }
