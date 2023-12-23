@@ -55,88 +55,95 @@ function App() {
         </div>
         <div className="col-md-5">
           <ScrollSpy scrollThrottle={10}>
-            <div id="posts" className="mb-4">
-              <h2>Posts</h2>
-              <Card>
-                <Card.Body>Stay tuned!</Card.Body>
-              </Card>
-            </div>
-            <div id="exp" className="mb-4">
-              <h2>Experiences</h2>
-              <div className="d-flex flex-column gap-2">
-                {info.experiences?.map(function (experience, index) {
-                  return (
-                    <Card className="mb-2" key={index}>
-                      <Card.Body>
-                        <Card.Title>{experience.org}</Card.Title>
-                        <Card.Subtitle className="mb-2 text-muted">
-                          {experience.title}
-                        </Card.Subtitle>
-                        <span>{experience.description}</span>
-                      </Card.Body>
-                    </Card>
-                  );
-                })}
-              </div>
-            </div>
-            <div id="pub" className="mb-4">
-              <h2>Publications</h2>
-              <div className="d-flex flex-column gap-2">
-                {info.publications?.map(function (publication, index) {
-                  return (
-                    <Card key={index}>
-                      <Card.Body>
-                        <Card.Title>{publication.title}</Card.Title>
-                        <Card.Subtitle className="mb-2 text-muted">
-                          {publication.author}
-                        </Card.Subtitle>
-                        <span>{publication.description}</span>
-                      </Card.Body>
-                    </Card>
-                  );
-                })}
-              </div>
-            </div>
-            <div id="edu" className="mb-4">
-              <h2>Education</h2>
-              <div className="d-flex flex-column gap-2">
-                {info.educations?.map(function (education, index) {
-                  return (
-                    <Card key={index}>
-                      <Card.Body>
-                        <Card.Title>{education.org}</Card.Title>
-                        <Card.Subtitle className="mb-2 text-muted">
-                          {education.from} to {education.to}
-                        </Card.Subtitle>
-                        <span>{education.description}</span>
-                      </Card.Body>
-                    </Card>
-                  );
-                })}
-              </div>
-            </div>
-            <div id="dnld" className="mb-4">
-              <h2>Downloadables</h2>
-              <Card>
-                <Card.Body>
-                  <div className="d-flex flex-column">
-                    {info.downloadables?.map(function (downloadable, index) {
-                      return (
-                        <div key={index}>
-                          <a href={downloadable.url} className="text-left">
-                            <FontAwesomeIcon
-                              icon={icon({ name: "download" })}
-                              className="me-1"
-                            />
-                            <span>{downloadable.title}</span>
-                          </a>
+            <Card id="posts" className="mb-4">
+              <Card.Body>
+                <Card.Title>Posts</Card.Title>
+                <div>Stay tuned!</div>
+              </Card.Body>
+            </Card>
+            <Card id="exp" className="mb-4">
+              <Card.Body>
+                <Card.Title>Experiences</Card.Title>
+                <div className="d-flex flex-column gap-2">
+                  {info.experiences?.map(function (experience, index) {
+                    return (
+                      <div className="sep-list" key={index}>
+                        <div className="mb-1">
+                          <div className="fw-semibold">{experience.title}</div>
+                          <div>{experience.org}</div>
+                          <div className="text-muted">
+                            {experience.from} - {experience.to}
+                          </div>
+                          <div className="text-muted">
+                            {experience.location}
+                          </div>
                         </div>
-                      );
-                    })}
-                  </div>
-                </Card.Body>
-              </Card>
-            </div>
+                        <div>{experience.description}</div>
+                      </div>
+                    );
+                  })}
+                </div>
+              </Card.Body>
+            </Card>
+            <Card id="pub" className="mb-4">
+              <Card.Body>
+                <Card.Title>Publications</Card.Title>
+                <div className="d-flex flex-column gap-2">
+                  {info.publications?.map(function (publication, index) {
+                    return (
+                      <div className="sep-list" key={index}>
+                        <div className="mb-1">
+                          <div className="fw-semibold">{publication.title}</div>
+                          <div className="text-muted">{publication.author}</div>
+                        </div>
+                        <div>{publication.description}</div>
+                      </div>
+                    );
+                  })}
+                </div>
+              </Card.Body>
+            </Card>
+            <Card id="edu" className="mb-4">
+              <Card.Body>
+                <Card.Title>Education</Card.Title>
+                <div className="d-flex flex-column gap-2">
+                  {info.educations?.map(function (education, index) {
+                    return (
+                      <div className="sep-list" key={index}>
+                        <div className="mb-1">
+                          <div className="fw-semibold">{education.org}</div>
+                          <div>{education.degree}</div>
+                          <div className="text-muted">
+                            {education.from} - {education.to}
+                          </div>
+                        </div>
+                        <div>{education.description}</div>
+                      </div>
+                    );
+                  })}
+                </div>
+              </Card.Body>
+            </Card>
+            <Card id="dnld" className="mb-4">
+              <Card.Body>
+                <Card.Title>Downloadables</Card.Title>
+                <div className="d-flex flex-column">
+                  {info.downloadables?.map(function (downloadable, index) {
+                    return (
+                      <div key={index}>
+                        <a href={downloadable.url} className="text-left">
+                          <FontAwesomeIcon
+                            icon={icon({ name: "download" })}
+                            className="me-1"
+                          />
+                          <span>{downloadable.title}</span>
+                        </a>
+                      </div>
+                    );
+                  })}
+                </div>
+              </Card.Body>
+            </Card>
           </ScrollSpy>
         </div>
         <div className="col-md-2 d-md-block d-none">

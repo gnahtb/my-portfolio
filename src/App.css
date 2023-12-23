@@ -16,3 +16,10 @@
 #toc>a:hover {
   border-left-color: var(--bs-emphasis-color) !important;
 }
+
+.sep-list:not(:last-child) {
+  border-bottom-style: solid;
+  border-bottom-width: 1px;
+  border-bottom-color: var(--bs-secondary-bg);
+  padding-bottom: 0.5rem !important;
+}
